@@ -66,7 +66,7 @@ body[data-view="toilet"] .st-app,body[data-view="app"] .st-toilet{display:none}
 .rig{display:flex;align-items:flex-end;position:relative}
 .rig svg.loo{width:250px;height:346px;position:relative;z-index:2;margin-right:-4px;flex:none}
 .screen-col{position:relative;display:flex;flex-direction:column;align-items:center}
-.arm{position:absolute;left:-60px;bottom:158px;width:240px;height:20px;background:var(--white);border:var(--line);border-radius:10px;z-index:1}
+.arm{position:absolute;left:-60px;bottom:158px;width:calc(50% + 60px);height:20px;background:var(--white);border:var(--line);border-radius:10px;z-index:1}
 .pole{width:28px;height:184px;background:var(--white);border:var(--line);border-top:0;position:relative;z-index:1}
 .pole::after{content:"";position:absolute;bottom:-3px;left:50%;translate:-50% 0;width:90px;height:14px;background:var(--white);border:var(--line);border-radius:8px 8px 0 0}
 body.compact .rig svg.loo,body.compact .arm{display:none}
@@ -74,9 +74,9 @@ body.compact .rig svg.loo,body.compact .arm{display:none}
 
 .device{position:relative;flex:none;box-sizing:border-box}
 .dev-inner{position:relative;width:100%;height:100%;overflow:hidden}
-.dev-toilet{width:372px;height:752px;border-radius:40px;background:var(--white);border:3px solid var(--ink);padding:12px;box-shadow:8px 8px 0 var(--ink)}
+.dev-toilet{width:812px;height:392px;border-radius:44px;background:var(--white);border:3px solid var(--ink);padding:12px;box-shadow:8px 8px 0 var(--ink)}
 .dev-toilet .dev-inner{border-radius:28px;background:var(--ink)}
-.dev-toilet::before{content:"";position:absolute;top:4px;left:50%;translate:-50% 0;width:8px;height:4px;border-radius:2px;background:var(--lilac)}
+.dev-toilet::before{content:"";position:absolute;left:4px;top:50%;translate:0 -50%;width:4px;height:8px;border-radius:2px;background:var(--lilac)}
 .dev-phone{width:384px;height:810px;border-radius:56px;background:var(--ink);padding:12px;box-shadow:8px 8px 0 var(--berry);margin-bottom:28px}
 .dev-phone .dev-inner{border-radius:44px;background:var(--paper)}
 .dev-phone::before{content:"";position:absolute;top:22px;left:50%;translate:-50% 0;width:104px;height:30px;border-radius:20px;background:var(--ink);z-index:30}
@@ -90,7 +90,7 @@ body.full .device::before{display:none}
 body.full .dev-inner{border-radius:0}
 body.mode-toilet .st-app,body.mode-app .st-toilet{display:none}
 body.mode-app{background:var(--paper)}
-body.full .tscr{padding-top:calc(14px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+body.full .tscr,body.full .t-sheet{padding-top:calc(10px + env(safe-area-inset-top,0px));padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 body.full .sbar{display:none}
 body.full .a-head{padding-top:calc(12px + env(safe-area-inset-top,0px))}
 body.full .a-tabs{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
@@ -99,6 +99,7 @@ body.full .a-ptop{padding-top:calc(12px + env(safe-area-inset-top,0px))}
 .demo-fab{display:none;position:fixed;z-index:90;left:calc(10px + env(safe-area-inset-left,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));
   font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:99px;background:var(--white);color:var(--ink);border:2px solid var(--ink);opacity:.35}
 body.full .demo-fab{display:block}
+body.mode-toilet .demo-fab{display:none}
 .demo-sheet{position:fixed;z-index:95;inset:auto 0 0 0;background:var(--white);color:var(--ink);border-top:var(--line);border-radius:22px 22px 0 0;
   padding:18px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:12px}
 .demo-sheet h3{font-size:18px}
@@ -106,68 +107,80 @@ body.full .demo-fab{display:block}
 .demo-sheet .row button,.demo-sheet .row a{border:var(--line);border-radius:12px;padding:8px 12px;font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;background:var(--white)}
 .demo-sheet .row button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
 
-/* ---------- TOILET SCREEN ---------- */
-.tscr{height:100%;display:flex;flex-direction:column;gap:14px;padding:14px 18px 20px;background:var(--ink);color:var(--on-ink);position:relative;overflow:hidden}
-.t-bar{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;color:var(--on-ink-muted);font-variant-numeric:tabular-nums}
-.t-proto{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--on-ink-muted);border-radius:99px;padding:2px 7px}
-.t-iconbtn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ink-2);color:var(--on-ink)}
-.t-body{flex:1;display:flex;flex-direction:column;gap:14px;min-height:0}
-.t-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
-.t-logo{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:800;font-size:18px}
-.t-logo .logo{width:28px;height:28px}
-.t-clock{font-family:var(--f-display);font-weight:800;font-size:84px;line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.t-date{font-weight:600;color:var(--on-ink-muted)}
-.t-h{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
-.t-p{color:var(--on-ink-muted);font-size:15px;line-height:1.4}
-.ring{width:132px;height:132px;border-radius:50%;display:grid;place-items:center;background:var(--berry);color:var(--ink);box-shadow:0 0 0 10px rgba(255,62,128,.25),0 0 0 22px rgba(255,62,128,.1)}
-.ring .ic{width:64px;height:64px;stroke-width:1.8}
+/* ---------- TOILET SCREEN (landscape, sized for an iPhone held sideways) ---------- */
+.dev-toilet .dev-inner{container-type:size}
+.tscr{height:100%;display:flex;flex-direction:column;gap:clamp(6px,2.5cqh,12px);padding:10px 20px 14px;background:var(--ink);color:var(--on-ink);position:relative;overflow:hidden}
+.t-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;font-weight:700;color:var(--on-ink-muted);font-variant-numeric:tabular-nums;flex:none}
+.t-proto{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--on-ink-muted);border-radius:99px;padding:3px 8px;color:var(--on-ink-muted)}
+.t-iconbtn{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink-2);color:var(--on-ink)}
+.t-iconbtn .ic{width:16px;height:16px}
+.t-body{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;align-items:center}
+.t-body.one{grid-template-columns:1fr}
+.t-body.who{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr)}
+.t-body.res{grid-template-columns:minmax(190px,.62fr) minmax(0,1.38fr);align-items:stretch}
+.t-col{display:flex;flex-direction:column;gap:clamp(6px,2.4cqh,12px);min-width:0;min-height:0;justify-content:center}
+.t-col.c{align-items:center;text-align:center}
+.t-row{display:flex;align-items:center;justify-content:center;gap:clamp(16px,5cqh,32px);text-align:left}
+.t-logo{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:800;font-size:clamp(14px,4.6cqh,19px)}
+.t-logo .logo{width:clamp(22px,7cqh,30px);height:clamp(22px,7cqh,30px)}
+.t-clock{font-family:var(--f-display);font-weight:800;font-size:clamp(46px,27cqh,120px);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.t-date{font-weight:600;color:var(--on-ink-muted);font-size:clamp(13px,4cqh,16px)}
+.t-h{font-size:clamp(22px,8.6cqh,36px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.t-p{color:var(--on-ink-muted);font-size:clamp(13px,4cqh,15px);line-height:1.4}
+.ring{width:clamp(72px,30cqh,140px);height:clamp(72px,30cqh,140px);border-radius:50%;display:grid;place-items:center;background:var(--berry);color:var(--ink);flex:none;
+  box-shadow:0 0 0 clamp(5px,2.4cqh,10px) rgba(255,62,128,.25),0 0 0 clamp(10px,5cqh,22px) rgba(255,62,128,.1)}
+.ring .ic{width:52%;height:52%;stroke-width:1.8}
 .pulse{animation:pulse 1.1s ease-in-out infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 16px rgba(255,62,128,.3),0 0 0 34px rgba(255,62,128,.08)}}
-.t-touch{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:10px}
-.t-touch b{font-family:var(--f-display);font-size:24px;font-weight:800}
-.t-touch small{color:var(--on-ink-muted);font-size:13px;margin-top:-10px}
-.t-ghost{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:2px dashed var(--on-ink-muted);border-radius:18px;font-weight:700;color:var(--on-ink-muted)}
-.t-paused{display:flex;align-items:center;gap:8px;background:var(--sun);color:var(--ink);font-weight:800;padding:8px 14px;border-radius:99px;font-size:13px}
-.t-people{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.t-person{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 10px;border-radius:22px;background:var(--ink-2);font-weight:800;font-size:17px}
+@keyframes pulse{50%{box-shadow:0 0 0 clamp(8px,3.6cqh,16px) rgba(255,62,128,.3),0 0 0 clamp(16px,7cqh,32px) rgba(255,62,128,.08)}}
+.t-touch{display:flex;flex-direction:column;align-items:center;gap:clamp(10px,4cqh,18px)}
+.t-touch b{font-family:var(--f-display);font-size:clamp(18px,6.4cqh,26px);font-weight:800}
+.t-touch small{color:var(--on-ink-muted);font-size:12.5px;margin-top:-6px}
+.t-ghost{display:flex;align-items:center;justify-content:center;gap:8px;padding:clamp(8px,3cqh,13px) 16px;border:2px dashed var(--on-ink-muted);border-radius:16px;font-weight:700;font-size:14px;color:var(--on-ink-muted);width:100%;max-width:340px}
+.t-paused{display:flex;align-items:center;gap:8px;background:var(--sun);color:var(--ink);font-weight:800;padding:6px 12px;border-radius:99px;font-size:12.5px}
+.t-people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.t-person{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:clamp(12px,5cqh,22px) 6px;border-radius:20px;background:var(--ink-2);font-weight:800;font-size:clamp(14px,4.4cqh,17px)}
 .av{--c:var(--berry);width:44px;height:44px;border-radius:50%;background:var(--c);color:var(--ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:20px;border:2.5px solid var(--ink);flex:none}
-.t-person .av{width:68px;height:68px;font-size:30px;border-color:var(--white)}
-.av.big{width:96px;height:96px;font-size:44px;border:3px solid var(--white)}
+.t-person .av{width:clamp(44px,17cqh,72px);height:clamp(44px,17cqh,72px);font-size:clamp(20px,7.5cqh,32px);border-color:var(--white)}
+.av.big{width:clamp(56px,22cqh,96px);height:clamp(56px,22cqh,96px);font-size:clamp(26px,10cqh,44px);border:3px solid var(--white)}
 .av.guest{background:var(--ink-2);color:var(--on-ink);border:2px dashed var(--on-ink-muted)}
-.t-big{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px;border-radius:20px;background:var(--berry);color:var(--ink);font-family:var(--f-display);font-weight:800;font-size:22px}
-.t-big.alt{background:var(--white)}
-.t-link{align-self:center;color:var(--on-ink-muted);font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:6px}
-.t-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.t-chips span{display:flex;align-items:center;gap:6px;background:var(--ink-2);border-radius:99px;padding:7px 12px;font-size:13px;font-weight:700}
+.av.guest .ic{width:50%;height:50%}
+.t-big{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:clamp(10px,4.2cqh,18px);border-radius:18px;background:var(--berry);color:var(--ink);font-family:var(--f-display);font-weight:800;font-size:clamp(17px,6cqh,23px)}
+.t-link{align-self:center;color:var(--on-ink-muted);font-weight:700;font-size:13.5px;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.t-chips{display:flex;flex-wrap:wrap;gap:6px}
+.t-chips span{display:flex;align-items:center;gap:6px;background:var(--ink-2);border-radius:99px;padding:6px 11px;font-size:12.5px;font-weight:700}
+.t-chips span .ic{width:15px;height:15px}
 .t-chips span.off{opacity:.45;text-decoration:line-through}
-.t-switchrow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink-2);border-radius:18px;padding:14px 16px;font-weight:700;width:100%}
+.t-switchrow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink-2);border-radius:16px;padding:clamp(9px,3.4cqh,14px) 16px;font-weight:700;font-size:14.5px;width:100%}
 .sw{width:50px;height:30px;border-radius:99px;background:var(--muted);position:relative;flex:none;border:2px solid var(--ink)}
 .sw i{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:var(--white);transition:translate .18s}
 .sw.on{background:var(--mint)}
 .sw.on i{translate:20px 0}
-.t-steps{display:flex;flex-direction:column;gap:12px;width:100%;text-align:left}
-.t-step{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--on-ink-muted)}
-.t-step .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink-2);flex:none}
+.t-steps{display:flex;flex-direction:column;gap:clamp(8px,3.4cqh,14px);width:100%;text-align:left}
+.t-step{display:flex;align-items:center;gap:12px;font-weight:700;font-size:clamp(13px,4.2cqh,16px);color:var(--on-ink-muted)}
+.t-step .dot{width:clamp(22px,8cqh,30px);height:clamp(22px,8cqh,30px);border-radius:50%;display:grid;place-items:center;background:var(--ink-2);flex:none}
 .t-step.now{color:var(--on-ink)}
 .t-step.now .dot{border:3px solid var(--sun);border-top-color:transparent;animation:spin .8s linear infinite;background:none}
 .t-step.done{color:var(--on-ink)}
 .t-step.done .dot{background:var(--mint);color:var(--ink)}
-.t-step.done .dot .ic{width:18px;height:18px;stroke-width:3}
+.t-step.done .dot .ic{width:60%;height:60%;stroke-width:3}
 @keyframes spin{to{rotate:360deg}}
 .t-prog{width:100%;height:12px;border-radius:99px;background:var(--ink-2);overflow:hidden}
 .t-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--sun),var(--berry));border-radius:99px;transition:width .6s}
 .t-reshead{display:flex;align-items:center;gap:12px}
-.t-reshead b{font-family:var(--f-display);font-size:22px;font-weight:800;display:block;line-height:1.1}
-.t-reshead small{color:var(--on-ink-muted);font-weight:600}
+.t-reshead b{font-family:var(--f-display);font-size:clamp(18px,6cqh,22px);font-weight:800;display:block;line-height:1.1}
+.t-reshead small{color:var(--on-ink-muted);font-weight:600;font-size:13px}
 .t-reshead .av{border-color:var(--white)}
-.t-alert{display:flex;align-items:center;gap:10px;width:100%;padding:12px 14px;border-radius:18px;background:var(--tomato);color:var(--ink);font-weight:800;font-size:15px;line-height:1.25}
+.t-alert{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:16px;background:var(--tomato);color:var(--ink);font-weight:800;font-size:13.5px;line-height:1.25;text-align:left}
 .t-alert.preg{background:var(--berry)}
-.t-alert .ic{width:26px;height:26px}
-.t-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0}
-.tile{display:flex;flex-direction:column;justify-content:space-between;gap:6px;padding:14px;border-radius:22px;color:var(--ink);background:var(--lilac);min-height:0}
-.tile .ic{width:30px;height:30px}
-.tile .lbl{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
-.tile .word{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1;letter-spacing:-.02em}
+.t-alert .ic{width:24px;height:24px}
+.t-res-l{justify-content:flex-start}
+.t-res-l .t-big{margin-top:auto}
+.t-tiles{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:0}
+.tile{display:flex;flex-direction:column;justify-content:space-between;gap:4px;padding:clamp(9px,3.4cqh,14px) 14px;border-radius:20px;color:var(--ink);background:var(--lilac);min-height:0;overflow:hidden}
+.tile-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tile .ic{width:clamp(20px,7cqh,28px);height:clamp(20px,7cqh,28px)}
+.tile .lbl{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.tile .word{font-family:var(--f-display);font-weight:800;font-size:clamp(17px,6.6cqh,26px);line-height:1;letter-spacing:-.02em}
 .tile .sub{font-size:12.5px;font-weight:600}
 .tone-ok{background:var(--mint)}
 .tone-watch{background:var(--sun)}
@@ -175,16 +188,29 @@ body.full .demo-fab{display:block}
 .tone-preg{background:var(--berry)}
 .tone-info{background:var(--lilac)}
 .tone-off{background:var(--ink-2);color:var(--on-ink-muted)}
-.t-sent{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700;color:var(--mint)}
-.t-wash{background:var(--sun);color:var(--ink);font-weight:800;border-radius:99px;padding:8px 16px}
-.t-donecheck{width:110px;height:110px;border-radius:50%;background:var(--mint);color:var(--ink);display:grid;place-items:center}
-.t-donecheck .ic{width:56px;height:56px;stroke-width:3}
+.t-sent{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--mint)}
+.t-wash{align-self:flex-start;background:var(--sun);color:var(--ink);font-weight:800;border-radius:99px;padding:7px 14px;font-size:14px}
+.t-donecheck{width:110px;height:110px;border-radius:50%;background:var(--mint);color:var(--ink);display:grid;place-items:center;flex:none}
+.t-donecheck .ic{width:50%;height:50%;stroke-width:3}
+.tscr .t-donecheck{width:clamp(70px,30cqh,130px);height:clamp(70px,30cqh,130px)}
 
-.t-sheet{position:absolute;inset:0;background:rgba(10,6,30,.6);display:flex;align-items:flex-end;z-index:20}
-.t-sheet-in{width:100%;max-height:92%;overflow:auto;background:var(--white);color:var(--ink);border-radius:28px 28px 0 0;padding:20px 18px 22px;display:flex;flex-direction:column;gap:14px}
-.t-sheet-in h2{font-size:26px;font-weight:800;letter-spacing:-.02em}
-.t-sheet-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.closebtn{width:36px;height:36px;border-radius:50%;border:var(--line);display:grid;place-items:center;flex:none;background:var(--white)}
+/* insight detail + privacy: full-screen white panel, two columns */
+.t-sheet{position:absolute;inset:0;z-index:20;background:var(--white);color:var(--ink);display:flex;flex-direction:column;gap:10px;padding:12px 20px 14px}
+.t-sheet-top{display:flex;align-items:center;gap:12px;flex:none}
+.t-sheet-top .mi{width:38px;height:38px;border-radius:12px;border:2.5px solid var(--ink);display:grid;place-items:center;flex:none}
+.t-sheet-top h2{font-size:clamp(20px,6.6cqh,26px);font-weight:800;letter-spacing:-.02em;flex:1;min-width:0}
+.t-sheet-body{flex:1;min-height:0;overflow-y:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:12px 24px;align-items:start}
+.t-sheet-body .t-col{justify-content:flex-start}
+.t-sheet .note{font-size:14.5px;line-height:1.45;color:var(--ink)}
+.t-sheet .note.dim{font-size:13px;color:var(--muted)}
+.t-sheet .bigword{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,10cqh,40px);letter-spacing:-.02em;line-height:1}
+.t-sheet .readings div{padding:8px 14px;font-size:14.5px}
+.t-sheet .bristol div{padding:4px 10px}
+.t-sheet .scale span{height:clamp(30px,11cqh,42px);font-size:14px}
+.t-sheet .setrow{padding:9px 0}
+.t-sheet .setrow .tx b{font-size:15px}
+.t-sheet .setrow .tx small{font-size:13.5px}
+.closebtn{width:38px;height:38px;border-radius:50%;border:var(--line);display:grid;place-items:center;flex:none;background:var(--white)}
 .scale{display:flex;gap:4px}
 .scale span{flex:1;height:38px;border-radius:8px;border:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--ink)}
 .scale span.cur{outline:3px solid var(--ink);outline-offset:2px;transform:translateY(-4px)}
@@ -192,7 +218,7 @@ body.full .demo-fab{display:block}
 .readings{display:flex;flex-direction:column;border:var(--line);border-radius:16px;overflow:hidden}
 .readings div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;font-weight:600}
 .readings div+div{border-top:2px solid var(--tile)}
-.readings b{font-weight:800}
+.readings b{font-weight:800;text-align:right}
 .readings .flag{color:#C2361A}
 .readings .flag::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tomato);margin-right:6px;vertical-align:1px}
 .note{font-size:13px;line-height:1.45;color:var(--muted)}
@@ -201,6 +227,17 @@ body.full .demo-fab{display:block}
 .bristol div b{font-family:var(--f-display);width:20px}
 .bristol div.ideal{background:#D7F8EC}
 .bristol div.cur{background:var(--ink);color:var(--white)}
+
+/* held upright in full-screen toilet mode: ask to rotate */
+.rotate{display:none}
+@media (orientation:portrait){
+  body.mode-toilet .rotate{display:flex;position:fixed;inset:0;z-index:85;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;
+    background:var(--ink);color:var(--on-ink);padding:24px max(24px,env(safe-area-inset-right,0px)) 24px max(24px,env(safe-area-inset-left,0px))}
+  body.mode-toilet .rotate .ic{width:72px;height:72px;stroke-width:1.6;color:var(--berry);animation:tilt 2.2s ease-in-out infinite}
+  body.mode-toilet .rotate b{font-family:var(--f-display);font-weight:800;font-size:26px}
+  body.mode-toilet .rotate span{color:var(--on-ink-muted);font-size:15px;max-width:30ch;line-height:1.4}
+}
+@keyframes tilt{0%,30%{rotate:0deg}55%,100%{rotate:-90deg}}
 
 /* ---------- APP ---------- */
 .app{height:100%;display:flex;flex-direction:column;position:relative;background:var(--paper);color:var(--ink)}
@@ -358,7 +395,7 @@ body.full .banner{top:calc(10px + env(safe-area-inset-top,0px))}
 
 <main class="stage" id="stage">
   <section class="st st-toilet">
-    <p class="st-label">Toilet screen <small>side-arm display</small></p>
+    <p class="st-label">Toilet screen <small>side-arm display, landscape</small></p>
     <div class="rig">
       <svg class="loo" viewBox="0 0 250 346" aria-hidden="true">
         <ellipse cx="125" cy="340" rx="96" ry="6" fill="#1A1238" opacity=".15"/>
@@ -386,6 +423,7 @@ body.full .banner{top:calc(10px + env(safe-area-inset-top,0px))}
 </main>
 <div class="floor"></div>
 
+<div class="rotate" aria-live="polite"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><b>Turn your phone sideways</b><span>The Health Link toilet screen is designed for landscape, like the panel on the side arm.</span></div>
 <button class="demo-fab" id="demoFab">Demo</button>
 <div class="demo-sheet" id="demoSheet" hidden>
   <h3>Demo controls</h3>
@@ -516,100 +554,121 @@ function tGo(screen){ clearT(); S.t.screen=screen; S.t.sheet=null; render(); }
 
 function renderT(){
   const t=S.t, p=t.user&&t.user!=='guest'?P[t.user]:null;
-  let b='';
+  let b='', layout='';
   const now=new Date();
   if(t.screen==='idle'){
-    b=`<div class="t-center">
-      <div class="t-logo">${LOGO}Health Link</div>
-      <div class="t-clock">${fmtTime(now).replace(/\s?[AP]M/,'')}</div>
-      <div class="t-date">${fmtDate(now)}</div>
-      ${S.housePaused?`<div class="t-paused">${I('pause')}Monitoring paused for everyone</div>`:''}
-      <button class="t-touch" data-act="t-start"><span class="ring">${I('finger')}</span><b>Tap to check in</b><small>or rest a finger on the sensor</small></button>
-    </div>
-    <button class="t-ghost" data-act="t-guest">${I('eyeoff')}Guest visit · nothing is saved</button>`;
+    b=`<div class="t-col c">
+        <div class="t-logo">${LOGO}Health Link</div>
+        <div class="t-clock">${fmtTime(now).replace(/\s?[AP]M/,'')}</div>
+        <div class="t-date">${fmtDate(now)}</div>
+        ${S.housePaused?`<div class="t-paused">${I('pause')}Monitoring paused for everyone</div>`:''}
+      </div>
+      <div class="t-col c">
+        <button class="t-touch" data-act="t-start"><span class="ring">${I('finger')}</span><b>Tap to check in</b><small>or rest a finger on the sensor</small></button>
+        <button class="t-ghost" data-act="t-guest">${I('eyeoff')}Guest visit · nothing is saved</button>
+      </div>`;
   } else if(t.screen==='who'){
-    b=`<div><h1 class="t-h">Who's here?</h1><p class="t-p" style="margin-top:6px">Everyone gets a private profile. Nobody else sees your results.</p></div>
-    <div class="t-people">${Object.values(P).map(x=>`<button class="t-person" data-act="t-pick" data-id="${x.id}"><span class="av" style="--c:${x.color}">${x.name[0]}</span>${x.name}</button>`).join('')}
-      <button class="t-person" data-act="t-guest"><span class="av guest">${I('eyeoff')}</span>Guest</button></div>
-    <div style="flex:1"></div>
-    <button class="t-link" data-act="t-home">Cancel</button>`;
+    layout='who';
+    b=`<div class="t-col"><h1 class="t-h">Who's here?</h1><p class="t-p">Everyone gets a private profile. Nobody else sees your results.</p><button class="t-link" style="align-self:flex-start" data-act="t-home">Cancel</button></div>
+      <div class="t-people">${Object.values(P).map(x=>`<button class="t-person" data-act="t-pick" data-id="${x.id}"><span class="av" style="--c:${x.color}">${x.name[0]}</span>${x.name}</button>`).join('')}
+        <button class="t-person" data-act="t-guest"><span class="av guest">${I('eyeoff')}</span>Guest</button></div>`;
   } else if(t.screen==='identify'){
-    b=`<div class="t-center"><span class="ring pulse">${I('finger')}</span><h1 class="t-h">Hold still, ${p.name}</h1><p class="t-p">Matching your fingerprint…</p></div>`;
+    layout='one';
+    b=`<div class="t-row"><span class="ring pulse">${I('finger')}</span><div class="t-col"><h1 class="t-h">Hold still, ${p.name}</h1><p class="t-p">Matching your fingerprint…</p></div></div>`;
   } else if(t.screen==='ready'){
     const paused = S.housePaused || p.paused;
-    b=`<div class="t-center"><span class="av big" style="--c:${p.color}">${p.name[0]}</span><h1 class="t-h">Hi ${p.name}!</h1>
-      <p class="t-p">${paused?'Monitoring is paused, so nothing will be analyzed this visit.':'Go ahead. Health Link reads everything automatically.'}</p>
-      ${paused?'':`<div class="t-chips">${metricKeys(p).map(k=>`<span class="${p.consent[k]?'':'off'}">${I(METRICS[k].icon)}${METRICS[k].short||METRICS[k].name}</span>`).join('')}</div>`}
-    </div>
-    ${paused?'':`<button class="t-switchrow" data-act="t-skip" role="switch" aria-checked="${t.skip}"><span>Don't record this visit</span><span class="sw ${t.skip?'on':''}"><i></i></span></button>`}
-    <button class="t-big" data-act="t-done">I'm done</button>
-    <button class="t-link" data-act="t-who">Not ${p.name}? Switch</button>`;
+    b=`<div class="t-col">
+        <div class="t-row" style="justify-content:flex-start"><span class="av big" style="--c:${p.color}">${p.name[0]}</span><h1 class="t-h">Hi ${p.name}!</h1></div>
+        <p class="t-p">${paused?'Monitoring is paused, so nothing will be analyzed this visit.':'Go ahead. Health Link reads everything automatically.'}</p>
+        ${paused?'':`<div class="t-chips">${metricKeys(p).map(k=>`<span class="${p.consent[k]?'':'off'}">${I(METRICS[k].icon)}${METRICS[k].short||METRICS[k].name}</span>`).join('')}</div>`}
+      </div>
+      <div class="t-col">
+        ${paused?'':`<button class="t-switchrow" data-act="t-skip" role="switch" aria-checked="${t.skip}"><span>Don't record this visit</span><span class="sw ${t.skip?'on':''}"><i></i></span></button>`}
+        <button class="t-big" data-act="t-done">I'm done</button>
+        <button class="t-link" data-act="t-who">Not ${p.name}? Switch</button>
+      </div>`;
   } else if(t.screen==='scan'){
     const steps=['Reading urine test strip','Measuring flow & concentration','Classifying stool (Bristol scale)'];
     if(p.hasCycle && p.consent.cyc) steps.push('Checking hormone markers');
-    b=`<div class="t-center" style="gap:22px">
-      <h1 class="t-h">Analyzing…</h1>
-      <div class="t-steps">${steps.map((s,i)=>`<div class="t-step ${i<t.step?'done':i===t.step?'now':''}"><span class="dot">${i<t.step?I('check'):''}</span>${s}</div>`).join('')}</div>
-      <div class="t-prog"><i style="width:${Math.min(100,t.step/steps.length*100)}%"></i></div>
-      <p class="t-p">Samples are analyzed in the bowl. No images are stored.</p></div>`;
+    b=`<div class="t-col">
+        <h1 class="t-h">Analyzing…</h1>
+        <div class="t-prog"><i style="width:${Math.min(100,t.step/steps.length*100)}%"></i></div>
+        <p class="t-p">Samples are analyzed in the bowl. No images are stored.</p>
+      </div>
+      <div class="t-steps">${steps.map((s,i)=>`<div class="t-step ${i<t.step?'done':i===t.step?'now':''}"><span class="dot">${i<t.step?I('check'):''}</span>${s}</div>`).join('')}</div>`;
   } else if(t.screen==='results'){
+    layout='res';
     const v=p.today;
-    b=`<div class="t-reshead"><span class="av" style="--c:${p.color}">${p.name[0]}</span><div><b>${p.name}'s check-in</b><small>${v.time}</small></div></div>
-    ${v.uti.flag&&p.consent.uti?`<button class="t-alert" data-act="t-tile" data-k="uti">${I('alert')}<span>Possible UTI signs found. Tap to see what this means.</span></button>`:''}
-    ${v.cyc&&v.cyc.preg&&p.consent.cyc?`<button class="t-alert preg" data-act="t-tile" data-k="cyc">${I('cycle')}<span>Pregnancy hormone (hCG) detected. Tap for details.</span></button>`:''}
-    <div class="t-tiles">${metricKeys(p).map(k=>{const s=stat(k,v,p);return `<button class="tile tone-${s.tone}" data-act="t-tile" data-k="${k}">${I(METRICS[k].icon)}<span><span class="lbl">${METRICS[k].short||METRICS[k].name}</span><br><span class="word">${s.word}</span></span><span class="sub">${s.sub}</span></button>`}).join('')}</div>
-    <div class="t-sent">${I('phone')}Full breakdown sent to ${p.name}'s phone</div>
-    <button class="t-big" data-act="t-finish">Done</button>`;
+    b=`<div class="t-col t-res-l">
+        <div class="t-reshead"><span class="av" style="--c:${p.color}">${p.name[0]}</span><div><b>${p.name}'s check-in</b><small>${v.time}</small></div></div>
+        ${v.uti.flag&&p.consent.uti?`<button class="t-alert" data-act="t-tile" data-k="uti">${I('alert')}<span>Possible UTI signs. Tap for details.</span></button>`:''}
+        ${v.cyc&&v.cyc.preg&&p.consent.cyc?`<button class="t-alert preg" data-act="t-tile" data-k="cyc">${I('cycle')}<span>Pregnancy hormone (hCG) detected. Tap for details.</span></button>`:''}
+        <div class="t-sent">${I('phone')}Full breakdown sent to ${p.name}'s phone</div>
+        <button class="t-big" data-act="t-finish">Done</button>
+      </div>
+      <div class="t-tiles">${metricKeys(p).map(k=>{const s=stat(k,v,p);return `<button class="tile tone-${s.tone}" data-act="t-tile" data-k="${k}"><span class="tile-top"><span class="lbl">${METRICS[k].short||METRICS[k].name}</span>${I(METRICS[k].icon)}</span><span class="word">${s.word}</span><span class="sub">${s.sub}</span></button>`}).join('')}</div>`;
   } else if(t.screen==='bye'){
+    layout='one';
     const kind=t.byeKind;
     const head = kind==='guest'?'Thanks for visiting':kind==='skip'?'Not recorded':kind==='paused'?'All set':`All set, ${p.name}`;
     const sub = kind==='guest'?'Guest visits are never analyzed or saved.':kind==='skip'?'This visit was not analyzed or saved.':kind==='paused'?'Monitoring is paused. Nothing was saved.':'Saved privately to your profile.';
-    b=`<div class="t-center"><span class="t-donecheck">${I('check')}</span><h1 class="t-h">${head}</h1><p class="t-p">${sub}</p><p class="t-wash">Don't forget to wash your hands</p>
-      <p class="t-p" style="font-size:13px">Back to start in ${t.count}…</p></div>
-    <button class="t-link" data-act="t-home">Back to start now</button>`;
+    b=`<div class="t-row"><span class="t-donecheck">${I('check')}</span>
+        <div class="t-col"><h1 class="t-h">${head}</h1><p class="t-p">${sub}</p><p class="t-wash">Don't forget to wash your hands</p>
+        <p class="t-p" style="font-size:13px">Back to start in ${t.count}… <button class="t-link" data-act="t-home">Go now</button></p></div></div>`;
   }
   let sheet='';
-  if(t.sheet==='privacy') sheet=tPrivacySheet(p);
+  if(t.sheet==='privacy') sheet=tPrivacySheet();
   else if(t.sheet) sheet=tDetailSheet(t.sheet,p);
-  $('#T').innerHTML=`<div class="tscr"><div class="t-bar"><span>${fmtTime(now)}</span><span class="t-proto">Prototype · simulated data</span><button class="t-iconbtn" data-act="t-privacy" aria-label="Privacy settings">${I('lock')}</button></div><div class="t-body">${b}</div></div>${sheet}`;
+  $('#T').innerHTML=`<div class="tscr"><div class="t-bar"><span>${fmtTime(now)}</span><button class="t-proto" data-act="t-demo">Prototype · simulated data</button><button class="t-iconbtn" data-act="t-privacy" aria-label="Privacy settings">${I('lock')}</button></div><div class="t-body ${layout}">${b}</div></div>${sheet}`;
 }
 
 function tDetailSheet(k,p){
-  const v=p.today, s=stat(k,v,p);
-  let c='';
-  if(s.tone==='off') c=`<p class="note">You turned off ${METRICS[k].name.toLowerCase()} in the app, so it wasn't checked.</p>`;
-  else if(k==='hyd'){
+  const v=p.today, s=stat(k,v,p), m=METRICS[k];
+  let left='', right='';
+  if(s.tone==='off'){
+    left=`<p class="note">You turned off ${m.name.toLowerCase()} in the app, so it wasn't checked this visit.</p>`;
+  } else if(k==='hyd'){
     const l=v.hyd.level;
-    c=`<div class="scale">${URINE.map((col,i)=>`<span style="background:${col}" class="${i+1===l?'cur':''}">${i+1}</span>`).join('')}</div>
-    <div class="scale-cap"><span>Hydrated</span><span>Dehydrated</span></div>
-    <div class="readings"><div>Urine colour<b>${l} of 8</b></div><div>Specific gravity<b>${sgFor(l)}</b></div></div>
-    <p class="note">${l<=3?'Nice. Keep sipping through the day.':l<=5?'A little concentrated. Try 2 glasses of water in the next hour.':'Quite concentrated. Drink water now and check again later.'}</p>`;
+    left=`<p class="note">${l<=3?'Nice. Your urine is pale, which means you\'re well hydrated. Keep sipping through the day.':l<=5?'Your urine is a little concentrated. Try 2 glasses of water in the next hour.':'Your urine is quite concentrated. Drink water now and check again later.'}</p>`;
+    right=`<div class="scale">${URINE.map((col,i)=>`<span style="background:${col}" class="${i+1===l?'cur':''}">${i+1}</span>`).join('')}</div>
+      <div class="scale-cap"><span>Hydrated</span><span>Dehydrated</span></div>
+      <div class="readings"><div>Urine colour<b>${l} of 8</b></div><div>Specific gravity<b>${sgFor(l)}</b></div></div>`;
   } else if(k==='uti'){
     const u=v.uti;
-    c=`<div class="readings"><div>Leukocytes<b class="${u.flag?'flag':''}">${u.leu}</b></div><div>Nitrite<b class="${u.flag?'flag':''}">${u.nit}</b></div><div>Blood<b>${u.blood}</b></div><div>pH<b>${u.ph.toFixed(1)}</b></div></div>
-    <p class="note">${u.flag?'White blood cells and nitrite together are common signs of a urinary tract infection. This is a screening, not a diagnosis. Your app has next steps.':'No signs of infection on today\'s test strip.'}</p>`;
+    left=`<p class="note">${u.flag?'White blood cells and nitrite together are common signs of a urinary tract infection. This is a screening, not a diagnosis.':'No signs of infection on today\'s test strip.'}</p>
+      ${u.flag?'<p class="note dim">Your app has next steps and can share these readings with your doctor.</p>':''}`;
+    right=`<div class="readings"><div>Leukocytes<b class="${u.flag?'flag':''}">${u.leu}</b></div><div>Nitrite<b class="${u.flag?'flag':''}">${u.nit}</b></div><div>Blood<b>${u.blood}</b></div><div>pH<b>${u.ph.toFixed(1)}</b></div></div>`;
   } else if(k==='gut'){
-    c=`<div class="bristol">${BRISTOL.map((d,i)=>`<div class="${i+1===v.gut.type?'cur':i>=2&&i<=4?'ideal':''}"><b>${i+1}</b>${d}</div>`).join('')}</div><p class="note">Types 3 to 5 are considered healthy.</p>`;
+    left=`<p class="note">Today's stool matched type ${v.gut.type}: ${BRISTOL[v.gut.type-1].toLowerCase()}.</p><p class="note dim">Types 3 to 5 (green) are considered healthy.</p>`;
+    right=`<div class="bristol">${BRISTOL.map((d,i)=>`<div class="${i+1===v.gut.type?'cur':i>=2&&i<=4?'ideal':''}"><b>${i+1}</b>${d}</div>`).join('')}</div>`;
   } else if(k==='cyc'){
     const c2=v.cyc, ph=phase(c2.day,c2.len);
-    c=`<div class="readings"><div>Cycle day<b>${c2.day} of ${c2.len}</b></div><div>Phase<b>${ph.name}</b></div><div>LH<b>${c2.lh}</b></div><div>hCG (pregnancy)<b class="${c2.preg?'flag':''}">${c2.hcg}</b></div></div>
-    <p class="note">${c2.preg?'hCG is the hormone home pregnancy tests detect. Confirm with a test or your doctor. Your app has next steps.':ph.desc}</p>`;
+    left=`<p class="note">${c2.preg?'hCG is the hormone home pregnancy tests detect. A urine screen can\'t confirm pregnancy, so take a test or see your doctor.':ph.desc}</p>`;
+    right=`<div class="readings"><div>Cycle day<b>${c2.day} of ${c2.len}</b></div><div>Phase<b>${ph.name}</b></div><div>LH<b>${c2.lh}</b></div><div>hCG (pregnancy)<b class="${c2.preg?'flag':''}">${c2.hcg}</b></div></div>`;
   } else if(k==='mk'){
-    c=`<div class="readings"><div>Glucose<b>Negative</b></div><div>Protein<b>Negative</b></div></div><p class="note">Early signs of kidney trouble and diabetes can show up in urine.</p>`;
+    left=`<p class="note">Early signs of kidney trouble and diabetes can show up in urine. Both are clear today.</p>`;
+    right=`<div class="readings"><div>Glucose<b>Negative</b></div><div>Protein<b>Negative</b></div></div>`;
   }
-  return `<div class="t-sheet" data-act="t-close" data-self="1"><div class="t-sheet-in">
-    <div class="t-sheet-top"><h2>${METRICS[k].name}</h2><button class="closebtn" data-act="t-close" aria-label="Close">${I('x')}</button></div>
-    <span class="pill" style="align-self:flex-start;background:${toneBg(s.tone)}">${s.word}</span>${c}
-    <p class="note">Trends and next steps are in the Health Link app.</p></div></div>`;
+  return `<div class="t-sheet" role="dialog" aria-label="${m.name}">
+    <div class="t-sheet-top"><span class="mi" style="background:${toneBg(s.tone)}">${I(m.icon)}</span><h2>${m.name}</h2><button class="closebtn" data-act="t-close" aria-label="Close">${I('x')}</button></div>
+    <div class="t-sheet-body">
+      <div class="t-col"><span class="bigword">${s.word}</span><span class="pill" style="align-self:flex-start;background:${toneBg(s.tone)}">${s.sub||m.name}</span>${left}${k==='uti'&&s.tone==='flag'?'':'<p class="note dim">Trends and next steps are in the Health Link app.</p>'}</div>
+      <div class="t-col">${right}</div>
+    </div></div>`;
 }
-function tPrivacySheet(p){
-  return `<div class="t-sheet" data-act="t-close" data-self="1"><div class="t-sheet-in">
-    <div class="t-sheet-top"><h2>Privacy</h2><button class="closebtn" data-act="t-close" aria-label="Close">${I('x')}</button></div>
-    <div class="setrow"><div class="tx"><b>Pause monitoring for everyone</b><small>The toilet works normally but analyzes nothing.</small></div><button class="sw ${S.housePaused?'on':''}" role="switch" aria-checked="${S.housePaused}" aria-label="Pause monitoring" data-act="t-pauseall"><i></i></button></div>
-    <div class="setrow"><div class="tx"><b>Results stay private</b><small>This screen only shows results to the person who checked in, and only for a moment.</small></div><span class="lockpill">${I('lock')}Always on</span></div>
-    <div class="setrow"><div class="tx"><b>What gets checked</b><small>Each person chooses this for themselves in the Health Link app.</small></div></div>
-    <div class="setrow"><div class="tx"><b>No cameras</b><small>Stool type is read by an optical sensor. No images are stored.</small></div></div>
-  </div></div>`;
+function tPrivacySheet(){
+  return `<div class="t-sheet" role="dialog" aria-label="Privacy">
+    <div class="t-sheet-top"><span class="mi" style="background:var(--lilac)">${I('lock')}</span><h2>Privacy</h2><button class="closebtn" data-act="t-close" aria-label="Close">${I('x')}</button></div>
+    <div class="t-sheet-body">
+      <div class="t-col">
+        <div class="setrow"><div class="tx"><b>Pause monitoring for everyone</b><small>The toilet works normally but analyzes nothing.</small></div><button class="sw ${S.housePaused?'on':''}" role="switch" aria-checked="${S.housePaused}" aria-label="Pause monitoring" data-act="t-pauseall"><i></i></button></div>
+        <div class="setrow"><div class="tx"><b>Results stay private</b><small>This screen only shows results to the person who checked in, and only for a moment.</small></div><span class="lockpill">${I('lock')}Always</span></div>
+      </div>
+      <div class="t-col">
+        <div class="setrow"><div class="tx"><b>What gets checked</b><small>Each person chooses this for themselves in the Health Link app.</small></div></div>
+        <div class="setrow"><div class="tx"><b>No cameras</b><small>Stool type is read by an optical sensor. No images are stored.</small></div></div>
+      </div>
+    </div></div>`;
 }
 
 function tFinishVisit(){
@@ -655,6 +714,7 @@ function tAct(act,el){
   else if(act==='t-close'){ t.sheet=null; render(); }
   else if(act==='t-privacy'){ t.sheet='privacy'; render(); }
   else if(act==='t-pauseall'){ S.housePaused=!S.housePaused; render(); }
+  else if(act==='t-demo'){ if(document.body.classList.contains('full')) $('#demoSheet').hidden=false; }
 }
 
 /* ================= APP ================= */
@@ -965,10 +1025,10 @@ function fit(){
   let view=S.view;
   const compact = W<720;
   document.body.classList.toggle('compact',compact);
-  if(view==='both' && W<1000) view='toilet';
+  if(view==='both' && W<1100) view='toilet';
   document.body.dataset.view=view;
-  const toiletW = compact?380:660, needW = view==='both'?toiletW+70+400:view==='toilet'?toiletW:400;
-  const needH = view==='app'?860:980;
+  const toiletW = compact?830:1080, needW = view==='both'?toiletW+70+400:view==='toilet'?toiletW:400;
+  const needH = view==='toilet'?680:900;
   const s=compact?Math.min(1,W/needW):Math.max(.4,Math.min(1,W/needW,H/needH));
   document.documentElement.style.setProperty('--s',s.toFixed(3));
 }
