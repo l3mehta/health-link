@@ -229,15 +229,18 @@ body.mode-toilet .demo-fab{display:none}
 .bristol div.cur{background:var(--ink);color:var(--white)}
 
 /* held upright in full-screen toilet mode: ask to rotate */
-.rotate{display:none}
-@media (orientation:portrait){
-  body.mode-toilet .rotate{display:flex;position:fixed;inset:0;z-index:85;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;
-    background:var(--ink);color:var(--on-ink);padding:24px max(24px,env(safe-area-inset-right,0px)) 24px max(24px,env(safe-area-inset-left,0px))}
-  body.mode-toilet .rotate .ic{width:72px;height:72px;stroke-width:1.6;color:var(--berry);animation:tilt 2.2s ease-in-out infinite}
-  body.mode-toilet .rotate b{font-family:var(--f-display);font-weight:800;font-size:26px}
-  body.mode-toilet .rotate span{color:var(--on-ink-muted);font-size:15px;max-width:30ch;line-height:1.4}
-}
+/* full-screen modes: ask to rotate when the phone is held the wrong way */
+.rotate{display:none;position:fixed;inset:0;z-index:85;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;
+  background:var(--ink);color:var(--on-ink);padding:20px max(24px,env(safe-area-inset-right,0px)) 20px max(24px,env(safe-area-inset-left,0px))}
+.rotate .ic{width:64px;height:64px;stroke-width:1.6;color:var(--berry)}
+.rotate b{font-family:var(--f-display);font-weight:800;font-size:26px}
+.rotate span{color:var(--on-ink-muted);font-size:15px;max-width:34ch;line-height:1.4}
+.rotate-toilet .ic{animation:tilt 2.2s ease-in-out infinite}
+.rotate-app .ic{animation:untilt 2.2s ease-in-out infinite}
+@media (orientation:portrait){ body.mode-toilet .rotate-toilet{display:flex} }
+@media (orientation:landscape) and (max-height:540px){ body.mode-app .rotate-app{display:flex} }
 @keyframes tilt{0%,30%{rotate:0deg}55%,100%{rotate:-90deg}}
+@keyframes untilt{0%,30%{rotate:-90deg}55%,100%{rotate:0deg}}
 
 /* ---------- APP ---------- */
 .app{height:100%;display:flex;flex-direction:column;position:relative;background:var(--paper);color:var(--ink)}
@@ -423,7 +426,8 @@ body.full .banner{top:calc(10px + env(safe-area-inset-top,0px))}
 </main>
 <div class="floor"></div>
 
-<div class="rotate" aria-live="polite"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><b>Turn your phone sideways</b><span>The Health Link toilet screen is designed for landscape, like the panel on the side arm.</span></div>
+<div class="rotate rotate-toilet" aria-live="polite"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><b>Turn your phone sideways</b><span>The Health Link toilet screen is designed for landscape, like the panel on the side arm.</span></div>
+<div class="rotate rotate-app" aria-live="polite"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><b>Turn your phone upright</b><span>The Health Link app is designed to be used vertically, like any phone app.</span></div>
 <button class="demo-fab" id="demoFab">Demo</button>
 <div class="demo-sheet" id="demoSheet" hidden>
   <h3>Demo controls</h3>
